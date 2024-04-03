@@ -1,7 +1,29 @@
 package com.android.mockfitness.ui.detail
 
 import androidx.lifecycle.ViewModel
+import com.android.mockfitness.data.PulseData
+import com.android.mockfitness.data.StepData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import com.android.mockfitness.data.MockDataSource.pulseData as pulseMockData
+import com.android.mockfitness.data.MockDataSource.stepData as stepMockData
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel : ViewModel() {
+
+    private val _pulseData: MutableStateFlow<List<PulseData>> = MutableStateFlow(listOf())
+    val pulseData: StateFlow<List<PulseData>> = _pulseData
+
+    private val _stepData: MutableStateFlow<List<StepData>> = MutableStateFlow(listOf())
+    val stepData: StateFlow<List<StepData>> = _stepData
+
+    fun getUserPulseData() {
+        _pulseData.value = pulseMockData
+    }
+
+
+    fun getUserStepData() {
+        _stepData.value = stepMockData
+    }
+
 
 }

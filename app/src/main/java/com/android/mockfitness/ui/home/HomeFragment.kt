@@ -23,6 +23,7 @@ import com.android.mockfitness.data.MockDataSource.stepData
 import com.android.mockfitness.data.PulseData
 import com.android.mockfitness.data.StepData
 import com.android.mockfitness.data.SleepQualityData
+import com.android.mockfitness.data.UserDataType
 import com.android.mockfitness.databinding.FragmentHomeBinding
 import com.android.mockfitness.ui.detail.DetailFragment
 import com.github.mikephil.charting.charts.LineChart
@@ -77,7 +78,16 @@ class HomeFragment : Fragment() {
         sleepChart(sleepQualityData)
         pulseChart(pulseData)
         binding.stepCardView.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_detailFragment)
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
+            findNavController().navigate(action)
+        }
+        binding.pulseCardView.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.PULSE.name)
+            findNavController().navigate(action)
+        }
+        binding.chartOfPulse.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.PULSE.name)
+            findNavController().navigate(action)
         }
     }
 

@@ -71,7 +71,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <TextView
-                android:id="@+id/dataCounterText3"
+                android:id="@+id/dataMinCounterText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -100,8 +100,8 @@
                 android:layout_marginBottom="2dp"
                 android:text="BPM"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/dataCounterText3"
-                app:layout_constraintStart_toEndOf="@+id/dataCounterText3" />
+                app:layout_constraintBottom_toBottomOf="@+id/dataMinCounterText"
+                app:layout_constraintStart_toEndOf="@+id/dataMinCounterText" />
 
             <TextView
                 android:id="@+id/typeOfMaxDataText"
@@ -122,8 +122,8 @@
                 android:layout_marginBottom="2dp"
                 android:text="BPM"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/dataMaxCounterText2"
-                app:layout_constraintStart_toEndOf="@+id/dataMaxCounterText2" />
+                app:layout_constraintBottom_toBottomOf="@+id/dataAvarageCounterText"
+                app:layout_constraintStart_toEndOf="@+id/dataAvarageCounterText" />
 
             <TextView
                 android:id="@+id/dataMaxCounterText"
@@ -138,7 +138,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <TextView
-                android:id="@+id/dataMaxCounterText2"
+                android:id="@+id/dataAvarageCounterText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -146,7 +146,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/divider2"
-                app:layout_constraintTop_toTopOf="@+id/dataCounterText3" />
+                app:layout_constraintTop_toTopOf="@+id/dataMinCounterText" />
 
             <View
                 android:id="@+id/divider2"
@@ -166,7 +166,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/dataCounterDescription3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dataCounterText3" />
+                app:layout_constraintTop_toTopOf="@+id/dataMinCounterText" />
 
             <TextView
                 android:id="@+id/dataCounterDescription"
@@ -184,7 +184,7 @@
                 android:text="Minimum"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/dataCounterText"
-                app:layout_constraintTop_toBottomOf="@+id/dataCounterText3" />
+                app:layout_constraintTop_toBottomOf="@+id/dataMinCounterText" />
 
             <TextView
                 android:id="@+id/dataMaxCounterDescription"
@@ -201,8 +201,8 @@
                 android:layout_height="wrap_content"
                 android:text="Ortalama"
                 android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@+id/dataMaxCounterText2"
-                app:layout_constraintTop_toBottomOf="@+id/dataMaxCounterText2" />
+                app:layout_constraintStart_toStartOf="@+id/dataAvarageCounterText"
+                app:layout_constraintTop_toBottomOf="@+id/dataAvarageCounterText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -231,7 +231,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dataCounterText4" />
+                app:layout_constraintTop_toTopOf="@+id/secondDataText" />
 
             <TextView
                 android:id="@+id/typeOfDataText4"
@@ -239,23 +239,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
-                android:text="dk."
+                android:text="saat"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/dataCounterText4"
-                app:layout_constraintStart_toEndOf="@+id/dataCounterText4" />
+                app:layout_constraintBottom_toBottomOf="@+id/secondDataText"
+                app:layout_constraintStart_toEndOf="@+id/secondDataText" />
 
             <TextView
                 android:id="@+id/typeOfDataText5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
-                android:text="dk."
+                android:text="saat"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/dataCounterText4"
-                app:layout_constraintStart_toEndOf="@+id/dataCounterText5" />
+                app:layout_constraintBottom_toBottomOf="@+id/secondDataText"
+                app:layout_constraintStart_toEndOf="@+id/secondDataSecondText" />
 
             <TextView
-                android:id="@+id/dataCounterText4"
+                android:id="@+id/secondDataText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -266,7 +267,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/customProgressBar" />
 
             <TextView
-                android:id="@+id/dataCounterText5"
+                android:id="@+id/secondDataSecondText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -329,16 +330,16 @@
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:background="#448AFF"
-                app:layout_constraintStart_toStartOf="@+id/dataCounterText4"
-                app:layout_constraintTop_toBottomOf="@+id/dataCounterText4" />
+                app:layout_constraintStart_toStartOf="@+id/secondDataText"
+                app:layout_constraintTop_toBottomOf="@+id/secondDataText" />
 
             <View
                 android:id="@+id/view5"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:background="#B2FF59"
-                app:layout_constraintStart_toStartOf="@+id/dataCounterText5"
-                app:layout_constraintTop_toBottomOf="@+id/dataCounterText4" />
+                app:layout_constraintStart_toStartOf="@+id/secondDataSecondText"
+                app:layout_constraintTop_toBottomOf="@+id/secondDataText" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -356,6 +357,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:text="Yoğun"
                 android:textColor="@color/white"
                 android:textSize="10sp"

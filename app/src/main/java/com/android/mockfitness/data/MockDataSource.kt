@@ -19,13 +19,13 @@ object MockDataSource {
         StepData(343, 14, "28 Mart"),
         StepData(25, 15, "28 Mart"),
         StepData(66, 16, "28 Mart"),
-        StepData(0, 17, "28 Mart"),
-        StepData(0, 18, "28 Mart"),
-        StepData(0, 19, "28 Mart"),
-        StepData(0, 20, "28 Mart"),
-        StepData(0, 21, "28 Mart"),
-        StepData(0, 22, "28 Mart"),
-        StepData(0, 23, "28 Mart"),
+        StepData(125, 17, "28 Mart"),
+        StepData(2357, 18, "28 Mart"),
+        StepData(4223, 19, "28 Mart"),
+        StepData(1285, 20, "28 Mart"),
+        StepData(634, 21, "28 Mart"),
+        StepData(24, 22, "28 Mart"),
+        StepData(53, 23, "28 Mart"),
         StepData(0, 0, "29 Mart"),
     )
 
@@ -66,23 +66,36 @@ object MockDataSource {
     )
 
     val pulseData = arrayListOf(
-        PulseData(60, 100, 0, "28 Mart"),
-        PulseData(70, 85, 2, "28 Mart"),
-        PulseData(63, 95, 4, "28 Mart"),
-        PulseData(46, 110, 6, "28 Mart"),
-        PulseData(57, 120, 8, "28 Mart"),
-        PulseData(56, 130, 10, "28 Mart"),
-        PulseData(78, 115, 12, "28 Mart"),
-        PulseData(96, 125, 14, "28 Mart"),
-        PulseData(76, 119, 16, "28 Mart"),
-        PulseData(78, 102, 18, "28 Mart"),
-        PulseData(54, 80, 20, "28 Mart"),
-        PulseData(45, 88, 22, "28 Mart"),
-        PulseData(80, 102, 24, "29 Mart"),
+        PulseData(
+            minPulse = 60,
+            maxPulse = 100,
+            restingPulse = 73,
+            hourOfDay = 0,
+            day = "28 Mart"
+        ),
+        PulseData(minPulse = 70, maxPulse = 85, restingPulse = 77, hourOfDay = 2, day = "28 Mart"),
+        PulseData(minPulse = 63, maxPulse = 95, restingPulse = 86, hourOfDay = 4,  day = "28 Mart"),
+        PulseData(minPulse = 46, maxPulse = 110, restingPulse = 72, hourOfDay = 6,  day = "28 Mart"),
+        PulseData(minPulse = 57, maxPulse = 120, restingPulse = 79, hourOfDay = 8, day =  "28 Mart"),
+        PulseData(minPulse = 56, maxPulse = 130, restingPulse = 72, hourOfDay = 10, day =  "28 Mart"),
+        PulseData(minPulse = 78, maxPulse = 115, restingPulse = 81, hourOfDay = 12, day =  "28 Mart"),
+        PulseData(minPulse = 96, maxPulse = 125, restingPulse = 75, hourOfDay = 14, day =  "28 Mart"),
+        PulseData(minPulse = 76, maxPulse = 119, restingPulse = 75, hourOfDay = 16, day =  "28 Mart"),
+        PulseData(minPulse = 78, maxPulse = 102, restingPulse = 71, hourOfDay = 18, day =  "28 Mart"),
+        PulseData(minPulse = 54, maxPulse = 80, restingPulse = 79, hourOfDay = 20, day =  "28 Mart"),
+        PulseData(minPulse = 45, maxPulse = 88, restingPulse = 85, hourOfDay = 22, day =  "28 Mart"),
+        PulseData(minPulse = 80, maxPulse = 102, restingPulse = 76, hourOfDay = 24,  day = "29 Mart"),
     )
 }
 
-data class StepData(val step: Int, val hourOfDay: Int, val day: String)
+data class StepData(val step: Int, val hourOfDay: Int, val day: String, val typeName: String = "adım")
 data class CalorieData(val calorieBurnForADay: Int, val hourOfDay: Int, val day: String)
 data class SleepQualityData(val sleepQualityForADay: Int, val hourOfDay: Int, val day: String)
-data class PulseData(val minPulse: Int, val maxPulse: Int, val hourOfDay: Int, val day: String)
+data class PulseData(val minPulse: Int, val maxPulse: Int, val restingPulse: Int, val hourOfDay: Int, val day: String, val type: String = "BPM")
+
+enum class UserDataType {
+    STEP,
+    CALORIE,
+    SLEEP_QUALITY,
+    PULSE
+}

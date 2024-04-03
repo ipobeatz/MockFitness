@@ -6,4 +6,5 @@
     <string name="calorie_burn_a_day">%1$s kal</string>
     <string name="sleep_time">%1$s Dakika</string>
     <string name="step_a_day">%1$s adım</string>
+    <string name="pulse_title_text">Nabız dilimi</string>
 </resources>
