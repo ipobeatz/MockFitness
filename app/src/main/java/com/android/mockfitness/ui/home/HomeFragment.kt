@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.android.mockfitness.R
 import com.android.mockfitness.data.CalorieData
 import com.android.mockfitness.data.MockDataSource.calorieData
@@ -23,6 +24,7 @@ import com.android.mockfitness.data.PulseData
 import com.android.mockfitness.data.StepData
 import com.android.mockfitness.data.SleepQualityData
 import com.android.mockfitness.databinding.FragmentHomeBinding
+import com.android.mockfitness.ui.detail.DetailFragment
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
@@ -46,10 +48,7 @@ class HomeFragment : Fragment() {
     private lateinit var googleSignInAccount: GoogleSignInAccount
     private val GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 10000
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var lineChart: LineChart
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -63,8 +62,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        homeViewModel.text.observe(viewLifecycleOwner) {
-        }
+
         return root
     }
 
@@ -78,6 +76,9 @@ class HomeFragment : Fragment() {
         calorieBarChart(calorieData)
         sleepChart(sleepQualityData)
         pulseChart(pulseData)
+        binding.stepCardView.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_detailFragment)
+        }
     }
 
     fun sleepChart(sleepQualityData: ArrayList<SleepQualityData>) {
