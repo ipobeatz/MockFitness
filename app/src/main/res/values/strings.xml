@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MockFitness</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="calorie_burn_a_day">%1$s kal</string>
+    <string name="sleep_time">%1$s Dakika</string>
+    <string name="step_a_day">%1$s adım</string>
+</resources>
