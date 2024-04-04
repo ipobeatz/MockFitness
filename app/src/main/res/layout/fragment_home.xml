@@ -22,7 +22,7 @@
         android:padding="10dp"
         android:text="Sağlık"
         android:fontFamily="@font/roboto_bold"
-        android:textColor="@color/white"
+        android:textColor="#C3C3C3"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                         android:layout_marginStart="15dp"
                         android:text="Tümünü Göster"
                         android:fontFamily="@font/roboto_bold"
-                        android:textColor="@color/white"
+                        android:textColor="#ACACAC"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -123,7 +123,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:text="  7 saat. 12 dk."
                             android:textAlignment="textStart"
-                            android:textColor="#E6E6E6"
+                            android:textColor="#B8B8B8"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toTopOf="@+id/dayOfThesleepData"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -138,7 +138,7 @@
                             android:text="  Kubat 30 Şubat"
                             android:textAlignment="textStart"
                             android:textColor="#B6B6B6"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             app:layout_constraintBottom_toTopOf="@+id/sleepDataChart"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -219,7 +219,7 @@
                             android:fontFamily="@font/roboto_bold"
                             android:text="110"
                             android:textAlignment="textStart"
-                            android:textColor="#E6E6E6"
+                            android:textColor="#B8B8B8"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toTopOf="@+id/dayOfThePulseChart"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -229,8 +229,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/roboto_bold"
+
                             android:text="BPM"
-                            android:textColor="@color/white"
+                            android:textColor="#B8B8B8"
                             app:layout_constraintBottom_toBottomOf="@+id/dayOfPulse"
                             app:layout_constraintStart_toEndOf="@+id/dayOfPulse"
                             app:layout_constraintTop_toTopOf="@+id/dayOfPulse" />
@@ -242,6 +243,8 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
                             android:text="  Kubat 30 Şubat"
+                            android:textSize="12sp"
+
                             android:textAlignment="textStart"
                             android:textColor="#B6B6B6"
                             app:layout_constraintBottom_toTopOf="@+id/chartOfPulse"
@@ -348,6 +351,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
+                            android:textSize="12sp"
+
                             android:text="  Kubat 30 Şubat"
                             android:textAlignment="textStart"
                             android:textColor="#B6B6B6"
@@ -445,6 +450,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
+                            android:textSize="12sp"
                             android:text="  Kubat 30 Şubat"
                             android:textAlignment="textStart"
                             android:textColor="#B6B6B6"
@@ -536,9 +542,8 @@
                     android:layout_marginBottom="4dp"
                     android:text="  7 saat. 12 dk."
                     android:fontFamily="@font/roboto_bold"
-
                     android:textAlignment="textStart"
-                    android:textColor="#E6E6E6"
+                    android:textColor="#B8B8B8"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/dayOfTheChart"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -551,6 +556,8 @@
                     android:layout_marginBottom="4dp"
                     android:text="  Kubat 30 Şubat"
                     android:textAlignment="textStart"
+                    android:textSize="12sp"
+
                     android:textColor="#B6B6B6"
                     android:fontFamily="@font/roboto"
 
@@ -635,7 +642,7 @@
                     android:text="  7 saat. 12 dk."
                     android:fontFamily="@font/roboto_bold"
                     android:textAlignment="textStart"
-                    android:textColor="#E6E6E6"
+                    android:textColor="#B8B8B8"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/dayOfTheCalorieChart"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -648,6 +655,8 @@
                     android:layout_marginBottom="4dp"
                     android:text="  Kubat 30 Şubat"
                     android:textAlignment="textStart"
+                    android:textSize="12sp"
+
                     android:textColor="#B6B6B6"
                     android:fontFamily="@font/roboto"
 
