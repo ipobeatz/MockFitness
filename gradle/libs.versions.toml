@@ -4,7 +4,10 @@ constraintlayout = "2.1.4"
 appcompat = "1.6.1"
 core-ktx = "1.12.0"
 espresso-core = "3.5.1"
+hilt-android-compiler = "2.50"
+hilt-navigation-compose = "1.2.0"
 junit = "4.13.2"
+kotlinx-coroutines-core = "1.8.0"
 lifecycle-viewmodel-ktx = "2.7.0"
 lifecycle-livedata-ktx = "2.7.0"
 material = "1.11.0"
@@ -13,10 +16,17 @@ navigation-fragment-ktx = "2.6.0"
 play-services-fitness = "21.1.0"
 play-services-auth = "21.0.0"
 mpandroidchart = "v3.1.0"
+firebase-bom = "32.8.0"
 
 [libraries]
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt-android-compiler" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt-android-compiler" }
+hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-navigation-compose" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-core" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
@@ -29,6 +39,7 @@ navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 play-services-fitness = { module = "com.google.android.gms:play-services-fitness", version.ref = "play-services-fitness" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 
 [plugins]
 

@@ -8,25 +8,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.android.mockfitness.R
-import com.android.mockfitness.data.PulseData
-import com.android.mockfitness.data.StepData
-import com.android.mockfitness.data.UserDataType
+import com.android.mockfitness.data.entity.PulseData
+import com.android.mockfitness.data.entity.StepData
+import com.android.mockfitness.data.entity.UserDataType
 import com.android.mockfitness.databinding.FragmentDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailFragment : Fragment() {
+@AndroidEntryPoint
+class DetailFragment @Inject constructor() : Fragment() {
     private var _binding: FragmentDetailBinding? = null
 
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val detailViewModel =
-            ViewModelProvider(this).get(DetailViewModel::class.java)
+        val detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -53,81 +53,56 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupStepDataUI(stepData: List<StepData>) {
-        binding.typeOfDataText.text = "saat"
-        binding.typeOfDataText3.text = stepData.first().typeName
-        binding.typeOfMaxDataText.text = stepData.first().typeName
-        binding.typeOfMaxDataText2.text = stepData.first().typeName
+        if (stepData.isNotEmpty()) {
+            val typeName = stepData.first().typeName
+            binding.apply {
+                typeOfDataText.text = "saat"
+                typeOfDataText3.text = typeName
+                typeOfMaxDataText.text = typeName
+                typeOfMaxDataText2.text = typeName
+                detailTitleText.text = "Yoğunluk durumu"
 
-        var averageStepOfDay = 0
-        val maxStepOfDayAsHour = (stepData.maxByOrNull {
-            it.step
-        }?.step ?: 0).toString()
-        val minStepOfDayAsHour = (stepData.minByOrNull {
-            it.step
-        }?.step ?: 0).toString()
-        val counterOfRestingHour = (stepData.filter {
-            it.step == 0
-        }.size)
-        val restingTimeCounter = stepData.filter {
-            it.step < 200
-        }.size
-        val activeTimeCounter = stepData.filter {
-            it.step > 700
-        }.size
+                val maxStep = stepData.maxOfOrNull { it.step } ?: 0
+                val minStep = stepData.minOfOrNull { it.step } ?: 0
+                val averageStep = stepData.sumOf { it.step } / stepData.size
+                val restingHourCount = stepData.count { it.step == 0 }
+                val restingTimeCount = stepData.count { it.step < 200 }
+                val activeTimeCount = stepData.count { it.step > 700 }
+                val progress =
+                    (restingTimeCount.toFloat() / (activeTimeCount + restingTimeCount) * 100).toInt()
 
-        val progressOfPulse =
-            (restingTimeCounter / (activeTimeCounter + restingTimeCounter).toFloat()) * 100
-
-
-        stepData.forEach {
-            averageStepOfDay += it.step
+                dataMinCounterText.text = minStep.toString()
+                dataMaxCounterText.text = maxStep.toString()
+                dataAvarageCounterText.text = averageStep.toString()
+                dataCounterText.text = restingHourCount.toString()
+                customProgressBar.progress = progress
+                secondDataText.text = restingTimeCount.toString()
+                secondDataSecondText.text = activeTimeCount.toString()
+            }
         }
-        binding.dataMinCounterText.text = minStepOfDayAsHour
-        binding.dataMaxCounterText.text = maxStepOfDayAsHour
-        binding.dataAvarageCounterText.text = (averageStepOfDay / stepData.size).toString()
-        binding.dataCounterText.text = counterOfRestingHour.toString()
-        binding.customProgressBar.progress = progressOfPulse.toInt()
-        binding.detailTitleText.text = "Yoğunluk durumu"
-
-        binding.secondDataText.text = restingTimeCounter.toString()
-        binding.secondDataSecondText.text = activeTimeCounter.toString()
     }
 
     private fun setupPulseDataUI(pulseData: List<PulseData>) {
-        var averageOfResting = 0
-        var totalMaxPulse = 0
-        var totalMinPulse = 0
+        val dataSize = pulseData.size
+        val averageOfResting = pulseData.sumOf { it.restingPulse } / dataSize
+        val totalMaxPulse = pulseData.maxOfOrNull { it.maxPulse } ?: 0
+        val totalMinPulse = pulseData.minOfOrNull { it.minPulse } ?: 0
+        val averagePulse = (pulseData.sumOf { it.maxPulse + it.minPulse }) / (dataSize * 2)
 
-        pulseData.forEach {
-            averageOfResting += it.restingPulse
-            totalMaxPulse += it.maxPulse
-            totalMinPulse += it.minPulse
-        }
-        val lightPulseCounter = pulseData.filter {
-            it.restingPulse < 80
-        }.size
-        val heavyPulseCounter = pulseData.filter {
-            it.restingPulse > 85
-        }.size
+        val lightPulseCounter = pulseData.count { it.restingPulse < 80 }
+        val heavyPulseCounter = pulseData.count { it.restingPulse > 85 }
         val progressOfPulse =
-            (lightPulseCounter / (heavyPulseCounter + lightPulseCounter).toFloat()) * 100
+            (lightPulseCounter.toFloat() / (heavyPulseCounter + lightPulseCounter) * 100).toInt()
 
-        binding.dataCounterText.text = (averageOfResting / pulseData.size).toString()
-        binding.dataMaxCounterText.text = (pulseData.maxByOrNull {
-            it.maxPulse
-        }?.maxPulse ?: 0).toString()
-        binding.dataMinCounterText.text = (pulseData.minByOrNull {
-            it.minPulse
-        }?.minPulse ?: 0).toString()
-
-        binding.dataAvarageCounterText.text =
-            ((totalMaxPulse.plus(totalMinPulse)) / (pulseData.size * 2)).toString()
-
-        binding.detailTitleText.text = getString(R.string.pulse_title_text)
-
-        binding.customProgressBar.progress = progressOfPulse.toInt()
-
-        binding.secondDataText.text = lightPulseCounter.toString()
-        binding.secondDataSecondText.text = heavyPulseCounter.toString()
+        binding.apply {
+            dataCounterText.text = averageOfResting.toString()
+            dataMaxCounterText.text = totalMaxPulse.toString()
+            dataMinCounterText.text = totalMinPulse.toString()
+            dataAvarageCounterText.text = averagePulse.toString()
+            detailTitleText.text = getString(R.string.pulse_title_text)
+            customProgressBar.progress = progressOfPulse
+            secondDataText.text = lightPulseCounter.toString()
+            secondDataSecondText.text = heavyPulseCounter.toString()
+        }
     }
 }

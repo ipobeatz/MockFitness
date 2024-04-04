@@ -7,4 +7,29 @@
     <string name="sleep_time">%1$s Dakika</string>
     <string name="step_a_day">%1$s adım</string>
     <string name="pulse_title_text">Nabız dilimi</string>
+    <string name="health">Sağlık</string>
+    <string name="see_all">Tümünü Göster</string>
+    <string name="time">7 saat</string>
+    <string name="minute">650 Dakika</string>
+    <string name="bpm_value">BPM değeri</string>
+    <string name="bpm">BPM</string>
+    <string name="step">BPM</string>
+    <string name="cal">Kalori</string>
+    <string name="date">Tarih</string>
+    <string name="movement_text">%1$s %2$s</string>
+    <string name="daily">Günlük Özet</string>
+    <string name="pulse_zone">Nabız Dilimi</string>
+    <string name="min">Minimum</string>
+    <string name="max">Maksimum</string>
+    <string name="average">Ortalama</string>
+    <string name="learn_more">Daha Fazla Bilgi Edinin</string>
+    <string name="heavy">Yoğun</string>
+    <string name="light">Hafif</string>
+    <string name="clock">saat</string>
+    <string name="day_start">00:00</string>
+    <string name="day_end">24:00</string>
+
+
+
+
 </resources>

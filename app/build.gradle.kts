@@ -1,13 +1,14 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("kotlin-android")
+    id("kotlin-kapt")
     id("androidx.navigation.safeargs")
     id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
 }
-
-
 
 android {
     namespace = "com.android.mockfitness"
@@ -16,7 +17,6 @@ android {
     defaultConfig {
         applicationId = "com.android.mockfitness"
         minSdk = 24
-        //noinspection EditedTargetSdkVersion
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -34,14 +34,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+
     buildFeatures {
         viewBinding = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.6"
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -61,6 +68,14 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.play.services.auth)
     implementation(libs.play.services.fitness)
-    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.hilt.compiler)
+
+    implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.firebase.bom)
 
 }

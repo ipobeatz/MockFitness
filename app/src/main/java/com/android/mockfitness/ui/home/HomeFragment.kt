@@ -1,67 +1,52 @@
 package com.android.mockfitness.ui.home
 
-import android.app.Activity
-import android.content.Intent
 import android.graphics.Color
-import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.android.mockfitness.MainActivity
 import com.android.mockfitness.R
-import com.android.mockfitness.data.CalorieData
-import com.android.mockfitness.data.MockDataSource.calorieData
-import com.android.mockfitness.data.MockDataSource.pulseData
-import com.android.mockfitness.data.MockDataSource.sleepQualityData
-import com.android.mockfitness.data.MockDataSource.stepData
-import com.android.mockfitness.data.MockDataSource.stepData2
-import com.android.mockfitness.data.MockDataSource.stepData3
-import com.android.mockfitness.data.PulseData
-import com.android.mockfitness.data.StepData
-import com.android.mockfitness.data.SleepQualityData
-import com.android.mockfitness.data.StepData2
-import com.android.mockfitness.data.StepData3
-import com.android.mockfitness.data.UserDataType
+import com.android.mockfitness.data.entity.CalorieData
+import com.android.mockfitness.data.entity.MovementData
+import com.android.mockfitness.data.entity.PulseData
+import com.android.mockfitness.data.entity.SleepQualityData
+import com.android.mockfitness.data.entity.StandingData
+import com.android.mockfitness.data.entity.StepData
+import com.android.mockfitness.data.entity.UserDataType
 import com.android.mockfitness.databinding.FragmentHomeBinding
-import com.github.mikephil.charting.components.YAxis
+import com.android.mockfitness.ui.home.chart.ConfigureChart
+import com.android.mockfitness.ui.home.chart.GraphChart
 import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.CandleData
-import com.github.mikephil.charting.data.CandleDataSet
 import com.github.mikephil.charting.data.CandleEntry
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.fitness.Fitness
-import com.google.android.gms.fitness.FitnessOptions
-import com.google.android.gms.fitness.data.DataType
-import com.google.android.gms.fitness.request.DataReadRequest
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.util.Calendar
-import java.util.concurrent.TimeUnit
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeFragment : Fragment() {
-    private lateinit var googleSignInAccount: GoogleSignInAccount
-    private val GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 10000
+@AndroidEntryPoint
+class HomeFragment @Inject constructor() : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-
+    private val viewModel: HomeViewModel by viewModels()
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var graphChart: GraphChart
+
+    @Inject
+    lateinit var configureChart: ConfigureChart
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -73,376 +58,244 @@ class HomeFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setup()
-        //sss()
-        //getReadData()
-        stepBarChart(stepData)
-        calorieBarChart(calorieData)
-        sleepChart(sleepQualityData)
-        pulseChart(pulseData)
-        stepBarChart2(stepData2)
-        stepBarChart3(stepData3)
+        observePulseData()
+        observeStepData()
+        observeCaloriesData()
+        observeMovementData()
+        observeStandingData()
+        observeSleepingQuality()
+        playClickAnimation()
+
+        (activity as? MainActivity)?.googleSignInAccount?.observe(viewLifecycleOwner) { account ->
+            viewModel.getUserStepData(account)
+        }
+
         binding.stepCardView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
+            val action =
+                HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
             findNavController().navigate(action)
         }
         binding.stepChart.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
+            val action =
+                HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
             findNavController().navigate(action)
         }
         binding.pulseCardView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.PULSE.name)
+            val action =
+                HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.PULSE.name)
             findNavController().navigate(action)
         }
         binding.chartOfPulse.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.PULSE.name)
+            val action =
+                HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.PULSE.name)
             findNavController().navigate(action)
         }
     }
 
-    fun sleepChart(sleepQualityData: ArrayList<SleepQualityData>) {
-        var SleepForADay = 0
-        sleepQualityData.forEach {
-            SleepForADay += it.sleepQualityForADay
-        }
-        val hours = SleepForADay / 60
-        val minutes = SleepForADay % 60
-        binding.sleepDataCountText.text = getString(R.string.sleep_time, "$hours saat $minutes ")
-
-        binding.dayOfThesleepData.text = sleepQualityData.first().day
-
-
-        val barData = BarData()
-
-        val barChart = binding.sleepDataChart
-
-        val entriesFilled = ArrayList<BarEntry>()
-        val entriesEmpty = ArrayList<BarEntry>()
-
-        for (i in sleepQualityData.indices) {
-            entriesFilled.add(BarEntry(i.toFloat(),360f))
-            entriesEmpty.add(BarEntry(i.toFloat(), 360f - sleepQualityData.get(i).sleepQualityForADay.toFloat()))
-        }
-
-        val dataSetFilled = BarDataSet(entriesFilled, "Filled")
-        dataSetFilled.color =Color.parseColor("#5871F6")  // Koyu mor
-        dataSetFilled.setDrawValues(false)
-
-        val dataSetEmpty = BarDataSet(entriesEmpty, "Empty")
-        dataSetEmpty.color = Color.parseColor("#353D64") // Açık mor
-        dataSetEmpty.setDrawValues(false)
-
-        val data = BarData(dataSetFilled, dataSetEmpty)
-        data.barWidth = 0.9f
-
-        barChart.data = data
-
-        barChart.axisLeft.isEnabled = false
-        barChart.axisRight.isEnabled = false
-        barChart.xAxis.isEnabled = false
-        barChart.legend.isEnabled = false
-        barChart.description.isEnabled = false
-        barChart.setDoubleTapToZoomEnabled(false)
-        barChart.animateY(1000)
-        barChart.invalidate()
+    private fun playClickAnimation() {
+        val animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.click_animation)
+        binding.clickableCardBPM?.startAnimation(animation)
+        binding.clickableCardStep?.startAnimation(animation)
     }
 
-    private fun pulseChart(pulseData: ArrayList<PulseData>) {
-        val chart = binding.chartOfPulse
-        chart.setTouchEnabled(false);
-        val entries = ArrayList<CandleEntry>()
+    private fun observePulseData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.pulseData.collect { pulseDataList ->
+                pulseChart(pulseDataList)
+            }
+        }
+    }
 
-        for (i in 0 until pulseData.size) {
-            /*
-            val minVal = (Math.random() * 30 + 20).toFloat() // 20 ile 50 arasında minimum
-            val maxVal = (Math.random() * 30 + 70).toFloat() // 70 ile 100 arasında maksimum
+    private fun observeStepData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.stepData.collect { stepDataList ->
+                stepBarChart(stepDataList)
+            }
+        }
+    }
 
-             */
-            binding.dayOfPulse.text = pulseData.get(1).restingPulse.toString()
-            binding.dayOfThePulseChart.text = pulseData.get(1).day.toString()
+    private fun observeCaloriesData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.caloriesData.collect { caloriesDataList ->
+                calorieBarChart(caloriesDataList)
+            }
+        }
+    }
 
-            val minVal = pulseData.get(i).minPulse
-            val maxVal = pulseData.get(i).maxPulse
-            entries.add(
-                CandleEntry(
-                    i.toFloat(),
-                    maxVal.toFloat(),
-                    minVal.toFloat(),
-                    75f,
-                    75f
+    private fun observeMovementData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.movementData.collect { movementDataList ->
+                movementChart(movementDataList)
+            }
+        }
+    }
+
+    private fun observeStandingData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.standingData.collect { standingDataList ->
+                standingChart(standingDataList)
+            }
+        }
+    }
+
+    private fun observeSleepingQuality() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.sleepingQuality.collect { sleepingQualityList ->
+                sleepChart(sleepingQualityList)
+            }
+        }
+    }
+
+    private fun stepBarChart(stepData: List<StepData>) {
+        if (stepData.isNotEmpty()) {
+            val stepForADay = stepData.sumOf { it.step }
+            binding.stepCountText.text = getString(R.string.step_a_day, stepForADay.toString())
+            binding.dayOfTheChart.text = stepData.first().day
+
+            val barData = BarData()
+            barData.barWidth = 0.5f
+
+            stepData.forEachIndexed { index, stepData ->
+                val dataSet = graphChart.createBarDataSet(index, stepData.step)
+                barData.addDataSet(dataSet)
+            }
+
+            configureChart.configureBarChart(binding.stepChart, barData)
+        }
+    }
+
+    private fun sleepChart(sleepQualityData: List<SleepQualityData>) {
+        if (sleepQualityData.isNotEmpty()) {
+            val sleepForADay = sleepQualityData.sumOf { it.sleepQualityForADay }
+            val (hours, minutes) = calculateTime(sleepForADay)
+            binding.sleepDataCountText.text =
+                getString(R.string.sleep_time, "$hours saat $minutes")
+            binding.dayOfThesleepData.text = sleepQualityData.first().day
+
+            val entriesFilled = ArrayList<BarEntry>()
+            val entriesEmpty = ArrayList<BarEntry>()
+
+            sleepQualityData.forEachIndexed { index, data ->
+                entriesFilled.add(BarEntry(index.toFloat(), 360f))
+                entriesEmpty.add(
+                    BarEntry(
+                        index.toFloat(), 360f - data.sleepQualityForADay.toFloat()
+                    )
                 )
+            }
+
+            val dataSetFilled =
+                graphChart.createBarDataSet(entriesFilled, "Filled", Color.parseColor("#5871F6"))
+            val dataSetEmpty =
+                graphChart.createBarDataSet(entriesEmpty, "Empty", Color.parseColor("#353D64"))
+
+            val barData = BarData(dataSetFilled, dataSetEmpty).apply {
+                barWidth = 0.9f
+            }
+
+            configureChart.configureBarChart(binding.sleepDataChart, barData)
+        }
+    }
+
+    private fun calculateTime(minutes: Int): Pair<Int, Int> {
+        val hours = minutes / 60
+        val remainingMinutes = minutes % 60
+        return Pair(hours, remainingMinutes)
+    }
+
+    private fun pulseChart(pulseData: List<PulseData>) {
+        if (pulseData.isNotEmpty()) {
+            val chart = binding.chartOfPulse
+            val entries = ArrayList<CandleEntry>()
+
+            pulseData.forEachIndexed { index, data ->
+                binding.dayOfPulse.text = data.restingPulse.toString()
+                binding.dayOfThePulseChart.text = data.day
+
+                entries.add(
+                    CandleEntry(
+                        index.toFloat(), data.maxPulse.toFloat(), data.minPulse.toFloat(), 75f, 75f
+                    )
+                )
+            }
+
+            val dataSet = graphChart.createCandleDataSet(entries, "Range")
+            val candleData = CandleData(dataSet)
+            configureChart.configureCandleChart(chart, candleData)
+        }
+    }
+
+    private fun calorieBarChart(calorieDataList: List<CalorieData>) {
+        if (calorieDataList.isNotEmpty()) {
+            val calorieBurnForADay = calorieDataList.sumOf { it.calorieBurnForADay }
+            binding.dayOfCalorieBurn.text =
+                getString(R.string.calorie_burn_a_day, calorieBurnForADay.toString())
+            binding.dayOfTheCalorieChart.text = calorieDataList.first().day
+
+            val barData = BarData()
+            barData.barWidth = 0.5f
+
+            calorieDataList.forEachIndexed { index, calorieData ->
+                val entries =
+                    arrayListOf(BarEntry(index.toFloat(), calorieData.calorieBurnForADay.toFloat()))
+                val dataSet =
+                    graphChart.createBarCalorieDataSet(entries, "Bar $index", R.color.yellow)
+                barData.addDataSet(dataSet)
+            }
+
+            configureChart.configureBarChart(binding.chartOfCalorie, barData)
+        }
+    }
+
+    private fun standingChart(standingData: List<StandingData>) {
+        if (standingData.isNotEmpty()) {
+            val stepForADay = standingData.sumOf { it.standingValue }
+            binding.standingTime.text = getString(
+                R.string.movement_text,
+                stepForADay.toString(),
+                standingData.first().typeName
             )
-        }
+            binding.standingDate.text = standingData.first().day
 
-        val dataSet = CandleDataSet(entries, "Range")
-        dataSet.setDrawIcons(false)
-        dataSet.axisDependency = YAxis.AxisDependency.LEFT
-        dataSet.shadowColor = Color.RED
-        dataSet.shadowWidth = 3f
-        dataSet.decreasingColor = Color.RED
-        dataSet.decreasingPaintStyle = Paint.Style.FILL
-        dataSet.increasingColor = Color.GREEN
-        dataSet.increasingPaintStyle = Paint.Style.FILL
-        dataSet.neutralColor = Color.TRANSPARENT
-        dataSet.setDrawValues(false)
+            val barData = BarData()
+            barData.barWidth = 0.5f
 
-        val data = CandleData(dataSet)
-
-        chart.data = data
-        val barChart = binding.chartOfPulse
-        chart.description.isEnabled = false
-        chart.legend.isEnabled = false
-
-        chart.xAxis.isEnabled = false
-        chart.axisLeft.isEnabled = true
-        chart.axisLeft.setDrawGridLines(false)
-        chart.axisRight.isEnabled = false
-        chart.axisLeft.setDrawLabels(false)
-        chart.axisLeft.setDrawGridLines(false)
-        chart.xAxis.setDrawGridLines(false)
-        barChart.setDoubleTapToZoomEnabled(false)
-        chart.invalidate()
-    }
-
-    fun stepBarChart(stepData: ArrayList<StepData>) {
-        var stepForADay = 0
-        stepData.forEach {
-            stepForADay += it.step
-        }
-        binding.stepCountText.text = getString(R.string.step_a_day, stepForADay.toString())
-        binding.dayOfTheChart.text = stepData.first().day
-
-
-        val barData = BarData()
-        barData.barWidth = 0.5f
-
-        stepData.forEachIndexed { index, stepData ->
-            val entries = ArrayList<BarEntry>()
-            entries.add(BarEntry(index.toFloat(), stepData.step.toFloat()))
-
-            val dataSet = BarDataSet(entries, "Bar $index")
-            dataSet.color = Color.YELLOW
-            dataSet.setDrawValues(false)  // Değerleri gizle
-
-            barData.addDataSet(dataSet)
-        }
-        val barChart = binding.stepChart
-        barChart.data = barData
-
-        barChart.description.isEnabled = false
-        barChart.legend.isEnabled = false
-        barChart.axisLeft.isEnabled = false
-        barChart.axisRight.isEnabled = false
-        barChart.xAxis.isEnabled = false
-        barChart.setDoubleTapToZoomEnabled(false)
-        barChart.setFitBars(true)  // Barları sığdırmak için
-        barChart.invalidate()
-
-    }
-
-    fun calorieBarChart(calorieDataList: ArrayList<CalorieData>) {
-        var calorieBurnForADay = 0
-        calorieDataList.forEach {
-            calorieBurnForADay += it.calorieBurnForADay
-        }
-        binding.dayOfCalorieBurn.text = getString(R.string.calorie_burn_a_day, calorieBurnForADay.toString())
-        binding.dayOfTheCalorieChart.text = calorieDataList.first().day
-        val barData = BarData()
-        barData.barWidth = 0.5f
-
-        calorieDataList.forEachIndexed { index, stepData ->
-            val entries = ArrayList<BarEntry>()
-            entries.add(BarEntry(index.toFloat(), stepData.calorieBurnForADay.toFloat()))
-
-            val dataSet = BarDataSet(entries, "Bar $index")
-            dataSet.color = ContextCompat.getColor(requireContext(), R.color.yellow)
-            dataSet.setDrawValues(false)  // Değerleri gizle
-
-            barData.addDataSet(dataSet)
-        }
-        val barChart = binding.chartOfCalorie
-        barChart.data = barData
-
-        barChart.description.isEnabled = false
-        barChart.legend.isEnabled = false
-        barChart.axisLeft.isEnabled = false
-        barChart.axisRight.isEnabled = false
-        barChart.xAxis.isEnabled = false
-        barChart.setDoubleTapToZoomEnabled(false)
-        barChart.setFitBars(true)  // Barları sığdırmak için
-        barChart.invalidate()
-
-    }
-
-    fun stepBarChart3(stepData2: ArrayList<StepData3>) {
-        var stepForADay = 0
-        stepData2.forEach {
-            stepForADay += it.step
-        }
-        binding.dayOfCalorieBurn3.text = getString(R.string.step_a_day, stepForADay.toString())
-        binding.dayOfTheCalorieChart3.text = stepData2.first().day
-
-
-        val barData = BarData()
-        barData.barWidth = 0.5f
-
-        stepData2.forEachIndexed { index, stepData ->
-            val entries = ArrayList<BarEntry>()
-            entries.add(BarEntry(index.toFloat(), stepData.step.toFloat()))
-
-            val dataSet = BarDataSet(entries, "Bar $index")
-            dataSet.color = ContextCompat.getColor(requireContext(), R.color.green)
-            dataSet.setDrawValues(false)  // Değerleri gizle
-
-            barData.addDataSet(dataSet)
-        }
-        val barChart = binding.chartOfCalorie3
-        barChart.data = barData
-
-        barChart.description.isEnabled = false
-        barChart.legend.isEnabled = false
-        barChart.axisLeft.isEnabled = false
-        barChart.axisRight.isEnabled = false
-        barChart.xAxis.isEnabled = false
-        barChart.setDoubleTapToZoomEnabled(false)
-        barChart.setFitBars(true)  // Barları sığdırmak için
-        barChart.invalidate()
-
-    }
-
-    fun stepBarChart2(stepData2: ArrayList<StepData2>) {
-        var stepForADay = 0
-        stepData2.forEach {
-            stepForADay += it.step
-        }
-        binding.stepCountText2.text = getString(R.string.step_a_day, stepForADay.toString())
-        binding.dayOfTheChart2.text = stepData2.first().day
-
-
-        val barData = BarData()
-        barData.barWidth = 0.5f
-
-        stepData2.forEachIndexed { index, stepData ->
-            val entries = ArrayList<BarEntry>()
-            entries.add(BarEntry(index.toFloat(), stepData.step.toFloat()))
-
-            val dataSet = BarDataSet(entries, "Bar $index")
-            dataSet.color = ContextCompat.getColor(requireContext(), R.color.blue)
-            dataSet.setDrawValues(false)  // Değerleri gizle
-
-            barData.addDataSet(dataSet)
-        }
-        val barChart = binding.stepChart2
-        barChart.data = barData
-
-        barChart.description.isEnabled = false
-        barChart.legend.isEnabled = false
-        barChart.axisLeft.isEnabled = false
-        barChart.axisRight.isEnabled = false
-        barChart.xAxis.isEnabled = false
-        barChart.setDoubleTapToZoomEnabled(false)
-        barChart.setFitBars(true)  // Barları sığdırmak için
-        barChart.invalidate()
-
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun sss() {
-        // Read the data that's been collected throughout the past week.
-        val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
-        val startTime = endTime.minusWeeks(1)
-        Log.i("TAG", "Range Start: $startTime")
-        Log.i("TAG", "Range End: $endTime")
-
-        val readRequest =
-            DataReadRequest.Builder()
-                // The data request can specify multiple data types to return,
-                // effectively combining multiple data queries into one call.
-                // This example demonstrates aggregating only one data type.
-                .aggregate(DataType.AGGREGATE_STEP_COUNT_DELTA)
-                // Analogous to a "Group By" in SQL, defines how data should be
-                // aggregated.
-                // bucketByTime allows for a time span, whereas bucketBySession allows
-                // bucketing by <a href="/fit/android/using-sessions">sessions</a>.
-                .bucketByTime(1, TimeUnit.DAYS)
-                .setTimeRange(startTime.toEpochSecond(), endTime.toEpochSecond(), TimeUnit.SECONDS)
-                .build()
-
-        readRequest
-    }
-
-    fun setup() {
-        val fitnessOptions = FitnessOptions.builder()
-            .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
-            .addDataType(DataType.TYPE_DISTANCE_DELTA, FitnessOptions.ACCESS_READ)
-            .addDataType(DataType.TYPE_HEART_RATE_BPM, FitnessOptions.ACCESS_READ).build()
-
-        googleSignInAccount =
-            GoogleSignIn.getAccountForExtension(this.requireContext(), fitnessOptions)
-
-        if (!GoogleSignIn.hasPermissions(googleSignInAccount, fitnessOptions)) {
-            val REQUEST_OAUTH_REQUEST_CODE = 0
-            GoogleSignIn.requestPermissions(
-                this, REQUEST_OAUTH_REQUEST_CODE, googleSignInAccount, fitnessOptions
-            )
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
-            println("mcmc -- " + resultCode)
-            if (resultCode == Activity.RESULT_OK) {
-                // İzinler başarıyla alındı, veri okuma işlemine başla
-                getReadData()
-            } else {
-                getReadData()
-                // İzinler alınamadı, hata işleme
+            standingData.forEachIndexed { index, stepData ->
+                val entries =
+                    arrayListOf(BarEntry(index.toFloat(), stepData.standingValue.toFloat()))
+                val dataSet =
+                    graphChart.createBarStandingDataSet(entries, "Bar $index", R.color.green)
+                barData.addDataSet(dataSet)
             }
+
+            configureChart.configureBarChart(binding.standingChart, barData)
         }
     }
 
-    fun getReadData() {
-        val calendar = Calendar.getInstance()
+    private fun movementChart(movementData: List<MovementData>) {
+        if (movementData.isNotEmpty()) {
+            val stepForADay = movementData.sumOf { it.movementValue }
+            binding.movementTime.text =
+                getString(
+                    R.string.movement_text,
+                    stepForADay.toString(),
+                    movementData.first().typeName
+                )
+            binding.movementDate.text = movementData.first().day
 
-        calendar.set(Calendar.YEAR, 2024)
-        calendar.set(Calendar.MONTH, Calendar.MARCH)
-        calendar.set(Calendar.DAY_OF_MONTH, 25)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
+            val barData = BarData()
+            barData.barWidth = 0.5f
 
-        val startTime = calendar.timeInMillis
-
-        calendar.set(Calendar.YEAR, 2024)
-        calendar.set(Calendar.MONTH, Calendar.APRIL)
-        calendar.set(Calendar.DAY_OF_MONTH, 2)
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-        calendar.set(Calendar.MILLISECOND, 999)
-
-        val endTime = calendar.timeInMillis
-
-        val readRequest = DataReadRequest.Builder()
-            .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
-            .bucketByTime(1, TimeUnit.DAYS)
-            .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
-            .build()
-
-        Fitness.getHistoryClient(this.requireContext(), googleSignInAccount)
-            .readData(readRequest)
-            .addOnSuccessListener { response ->
-                val dataSet = response.getDataSet(DataType.AGGREGATE_STEP_COUNT_DELTA)
-                // Verileri işle
-                println("mcmc --22< " + dataSet)
+            movementData.forEachIndexed { index, stepData ->
+                val entries =
+                    arrayListOf(BarEntry(index.toFloat(), stepData.movementValue.toFloat()))
+                val dataSet =
+                    graphChart.createBarMovementDataSet(entries, "Bar $index", R.color.blue)
+                barData.addDataSet(dataSet)
             }
-            .addOnFailureListener { e ->
-                println("mcmc --< " + e.message)
-                // Hata işleme
-            }
+
+            configureChart.configureBarChart(binding.movementChart, barData)
+        }
     }
 
     override fun onDestroyView() {

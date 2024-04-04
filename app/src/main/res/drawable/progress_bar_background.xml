@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Arka plan (yeşil kısım) -->
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="10dp" />
             <solid android:color="#FF00FF00" />
         </shape>
     </item>
-    <!-- Dolu kısım (mavi) -->
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="rectangle">

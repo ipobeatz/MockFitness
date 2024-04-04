@@ -14,34 +14,34 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_xsmall"
-        android:padding="@dimen/padding_xsmall"
-        android:text="@string/health"
-        android:fontFamily="@font/roboto_bold"
-        android:textColor="#C3C3C3"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="10dp"
+                android:text="@string/health"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="#C3C3C3"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="@dimen/home_image_layout"
-        android:layout_height="@dimen/home_image_layout"
-        android:layout_marginRight="@dimen/margin_small"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@android:drawable/ic_menu_add"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@android:drawable/ic_menu_add"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardView4"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/material_card_height"
-                android:layout_margin="@dimen/margin_small"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
                 style="@style/MyCardView"
                 android:backgroundTint="#141414"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginStart="15dp"
                         android:text="@string/see_all"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="#ACACAC"
@@ -67,7 +67,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_marginRight="20dp"
                         android:background="@drawable/baseline_chevron_right_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
                 android:id="@+id/firstLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView4">
@@ -90,25 +90,25 @@
                     android:id="@+id/airPollutionCardView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#141414"
-                    android:layout_marginStart="@dimen/home_card_margin_start"
-                    android:layout_weight="@dimen/home_card_layout_weight"
-                    app:cardCornerRadius="@dimen/home_card_corner_radius"
-                    app:cardElevation="@dimen/home_card_elevation"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="230dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="@dimen/padding_xxsmall">
+                        android:padding="8dp">
 
                         <ImageView
                             android:id="@+id/sleepDataCardIcon"
-                            android:layout_width="@dimen/home_imageview_width"
-                            android:layout_height="@dimen/home_imageview_height"
-                            android:layout_marginTop="@dimen/home_imageview_margin_top"
-                            android:layout_marginBottom="@dimen/home_imageview_margin_top"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
                             android:background="@drawable/fitness_icon5"
                             app:layout_constraintBottom_toTopOf="@+id/sleepDataCountText"
                             app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +119,7 @@
                             android:id="@+id/sleepDataCountText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto_bold"
                             android:text="@string/time"
                             android:textAlignment="textStart"
@@ -133,7 +133,7 @@
                             android:id="@+id/dayOfThesleepData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
                             android:text="@string/date"
                             android:textAlignment="textStart"
@@ -146,7 +146,7 @@
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/sleepDataChart"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/chart_height"
+                            android:layout_height="100dp"
                             app:layout_constraintBottom_toTopOf="@+id/sleepDataQualityBadText"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -156,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_start"
+                            android:text="00:00"
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/sleepDataChart">
@@ -168,7 +168,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_end"
+                            android:text="24:00"
+
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/sleepDataChart">
@@ -183,48 +184,38 @@
                     android:id="@+id/pulseCardView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_smedium"
-                    android:layout_marginStart="@dimen/home_card_margin_start"
-                    android:layout_weight="@dimen/home_card_layout_weight"
-                    app:cardCornerRadius="@dimen/home_card_corner_radius"
-                    app:cardElevation="@dimen/home_card_elevation"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="230dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="@dimen/padding_xxsmall">
+                        android:padding="8dp">
 
                         <ImageView
                             android:id="@+id/pulseCardIcon"
-                            android:layout_width="@dimen/home_imageview_width"
-                            android:layout_height="@dimen/home_imageview_height"
-                            android:layout_marginTop="@dimen/home_imageview_margin_top"
-                            android:layout_marginBottom="@dimen/home_imageview_margin_top"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+
                             android:background="@drawable/fitness_icon4"
                             app:layout_constraintBottom_toTopOf="@+id/dayOfPulse"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <ImageView
-                            android:id="@+id/clickableCardBPM"
-                            android:layout_width="@dimen/home_imageview_width"
-                            android:layout_height="@dimen/home_imageview_height"
-                            android:layout_marginTop="@dimen/home_imageview_margin_top"
-                            android:layout_marginBottom="@dimen/home_imageview_margin_top"
-                            android:background="@drawable/baseline_ads_click_24"
-                            app:layout_constraintBottom_toTopOf="@+id/dayOfPulse"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
                         <TextView
                             android:id="@+id/dayOfPulse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto_bold"
                             android:text="@string/bpm_value"
                             android:textAlignment="textStart"
@@ -236,7 +227,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_xxsmall"
+                            android:layout_marginStart="3dp"
                             android:fontFamily="@font/roboto_bold"
                             android:textSize="16sp"
                             android:text="@string/bpm"
@@ -249,7 +240,7 @@
                             android:id="@+id/dayOfThePulseChart"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
                             android:text="@string/date"
                             android:textSize="12sp"
@@ -263,7 +254,7 @@
                         <com.github.mikephil.charting.charts.CandleStickChart
                             android:id="@+id/chartOfPulse"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/chart_height"
+                            android:layout_height="100dp"
                             app:layout_constraintBottom_toTopOf="@+id/pulseChartStartTime"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -273,7 +264,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_start"
+                            android:text="00:00"
+
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/chartOfPulse">
@@ -284,7 +276,7 @@
                             android:id="@+id/pulseChartEndTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/day_end"
+                            android:text="24:00"
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/chartOfPulse">
@@ -301,8 +293,8 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:layout_marginBottom="@dimen/margin_xlarge"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="80dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -312,25 +304,26 @@
                     android:id="@+id/stepCardView2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#141414"
-                    android:layout_marginStart="@dimen/home_card_margin_start"
-                    android:layout_weight="@dimen/home_card_layout_weight"
-                    app:cardCornerRadius="@dimen/home_card_corner_radius"
-                    app:cardElevation="@dimen/home_card_elevation"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="230dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="@dimen/padding_xxsmall">
+                        android:padding="8dp">
 
                         <ImageView
                             android:id="@+id/stepCardIcon2"
-                            android:layout_width="@dimen/home_imageview2_width"
-                            android:layout_height="@dimen/home_imageview2_height"
-                            android:layout_marginTop="@dimen/home_imageview_margin_top"
-                            android:layout_marginBottom="@dimen/home_imageview_margin_top"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+
                             android:background="@drawable/baseline_watch_later_24"
                             app:layout_constraintBottom_toTopOf="@+id/movementTime"
                             app:layout_constraintStart_toStartOf="parent"
@@ -341,9 +334,10 @@
                             android:id="@+id/movementTime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto_bold"
-                            android:text="@string/minute"
+                            android:text="  7 saat. 12 dk."
+
                             android:textAlignment="textStart"
                             android:textColor="#E6E6E6"
                             android:textSize="16sp"
@@ -355,12 +349,14 @@
                             android:id="@+id/movementDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
                             android:textSize="12sp"
+
                             android:text="@string/date"
                             android:textAlignment="textStart"
                             android:textColor="#B6B6B6"
+
                             app:layout_constraintBottom_toTopOf="@+id/movementChart"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -368,7 +364,7 @@
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/movementChart"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/chart_height"
+                            android:layout_height="100dp"
                             app:layout_constraintBottom_toTopOf="@+id/chartStartTime2"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -378,7 +374,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_start"
+                            android:text="00:00"
+
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/movementChart">
@@ -390,7 +387,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_end"
+                            android:text="24:00"
+
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/movementChart">
@@ -405,12 +403,12 @@
                     android:id="@+id/calorieCardView3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#141414"
-                    android:layout_marginStart="@dimen/home_card_margin_start"
-                    android:layout_weight="@dimen/home_card_layout_weight"
-                    app:cardCornerRadius="@dimen/home_card_corner_radius"
-                    app:cardElevation="@dimen/home_card_elevation"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="230dp">
 
@@ -421,10 +419,11 @@
 
                         <ImageView
                             android:id="@+id/calorieCardIcon3"
-                            android:layout_width="@dimen/home_imageview2_width"
-                            android:layout_height="@dimen/home_imageview2_height"
-                            android:layout_marginTop="@dimen/home_imageview_margin_top"
-                            android:layout_marginBottom="@dimen/home_imageview_margin_top"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+
                             android:background="@drawable/baseline_man_24"
                             app:layout_constraintBottom_toTopOf="@+id/standingTime"
                             app:layout_constraintStart_toStartOf="parent"
@@ -435,9 +434,9 @@
                             android:id="@+id/standingTime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto_bold"
-                            android:text="@string/minute"
+                            android:text="  7 saat. 12 dk."
                             android:textAlignment="textStart"
                             android:textColor="#E6E6E6"
                             android:textSize="16sp"
@@ -449,7 +448,7 @@
                             android:id="@+id/standingDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_xxsmall"
+                            android:layout_marginBottom="4dp"
                             android:fontFamily="@font/roboto"
                             android:textSize="12sp"
                             android:text="@string/date"
@@ -462,7 +461,7 @@
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/standingChart"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/chart_height"
+                            android:layout_height="100dp"
                             app:layout_constraintBottom_toTopOf="@+id/calorieChartStartTime3"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -472,7 +471,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_start"
+                            android:text="00:00"
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/standingChart">
@@ -484,7 +483,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="@string/day_end"
+                            android:text="24:00"
                             android:textColor="@android:color/darker_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/standingChart">
@@ -496,215 +495,209 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_smedium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstLinearLayout">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/stepCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            app:cardCornerRadius="@dimen/home_card_corner_radius"
-            app:cardElevation="@dimen/home_card_elevation"
-            android:layout_marginStart="@dimen/home_card_margin_start"
-            android:layout_weight="@dimen/home_card_layout_weight"
-            android:backgroundTint="#141414"
-
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="230dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/padding_xxsmall">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/firstLinearLayout">
 
-                <ImageView
-                    android:id="@+id/stepCardIcon"
-                    android:layout_width="@dimen/home_imageview_width"
-                    android:layout_height="@dimen/home_imageview_height"
-                    android:layout_marginTop="@dimen/home_imageview_margin_top"
-                    android:layout_marginBottom="@dimen/home_imageview_margin_top"
-
-                    android:background="@drawable/fitness_icon2"
-                    app:layout_constraintBottom_toTopOf="@+id/stepCountText"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/stepCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:layout_editor_absoluteY="230dp">
 
-                <ImageView
-                    android:id="@+id/clickableCardStep"
-                    android:layout_width="@dimen/home_imageview_width"
-                    android:layout_height="@dimen/home_imageview_height"
-                    android:layout_marginTop="@dimen/home_imageview_margin_top"
-                    android:layout_marginBottom="@dimen/home_imageview_margin_top"
-                    android:background="@drawable/baseline_ads_click_24"
-                    app:layout_constraintBottom_toTopOf="@+id/stepCountText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:id="@+id/stepCardIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+
+                            android:background="@drawable/fitness_icon2"
+                            app:layout_constraintBottom_toTopOf="@+id/stepCountText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/stepCountText"
-                    android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/stepCountText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/time"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textAlignment="textStart"
+                            android:textColor="#B8B8B8"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfTheChart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/dayOfTheChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/date"
+                            android:textAlignment="textStart"
+                            android:textSize="12sp"
+
+                            android:textColor="#B6B6B6"
+                            android:fontFamily="@font/roboto"
+
+                            app:layout_constraintBottom_toTopOf="@+id/stepChart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/stepChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toTopOf="@+id/chartStartTime"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/chartStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00"
+                            android:fontFamily="@font/roboto"
+
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/stepChart">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/chartEndTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24:00"
+                            android:fontFamily="@font/roboto"
+
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/stepChart">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/calorieCardView"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_xxsmall"
-                    android:text="@string/time"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textAlignment="textStart"
-                    android:textColor="#B8B8B8"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/dayOfTheChart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/dayOfTheChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_xxsmall"
-                    android:text="@string/date"
-                    android:textAlignment="textStart"
-                    android:textSize="12sp"
-                    android:textColor="#B6B6B6"
-                    android:fontFamily="@font/roboto"
-                    app:layout_constraintBottom_toTopOf="@+id/stepChart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/stepChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/chart_height"
-                    app:layout_constraintBottom_toTopOf="@+id/chartStartTime"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/chartStartTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/day_start"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/stepChart">
-                </androidx.appcompat.widget.AppCompatTextView>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/chartEndTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/day_end"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/stepChart">
-                </androidx.appcompat.widget.AppCompatTextView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/calorieCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_smedium"
-            android:backgroundTint="#141414"
-            android:layout_marginStart="@dimen/home_card_margin_start"
-            android:layout_weight="@dimen/home_card_layout_weight"
-            app:cardCornerRadius="@dimen/home_card_corner_radius"
-            app:cardElevation="@dimen/home_card_elevation"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="230dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/padding_xxsmall">
-
-                <ImageView
-                    android:id="@+id/calorieCardIcon"
-                    android:layout_width="@dimen/home_imageview_width"
-                    android:layout_height="@dimen/home_imageview_height"
-                    android:layout_marginTop="@dimen/home_imageview_margin_top"
-                    android:layout_marginBottom="@dimen/home_imageview_margin_top"
-                    android:background="@drawable/fitness_icon3"
-                    app:layout_constraintBottom_toTopOf="@+id/dayOfCalorieBurn"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:layout_editor_absoluteY="230dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:id="@+id/calorieCardIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+
+                            android:background="@drawable/fitness_icon3"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfCalorieBurn"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/dayOfCalorieBurn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_xxsmall"
-                    android:text="@string/cal"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textAlignment="textStart"
-                    android:textColor="#B8B8B8"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/dayOfTheCalorieChart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <TextView
+                            android:id="@+id/dayOfCalorieBurn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/cal"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textAlignment="textStart"
+                            android:textColor="#B8B8B8"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfTheCalorieChart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/dayOfTheCalorieChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_xxsmall"
-                    android:text="@string/date"
-                    android:textAlignment="textStart"
-                    android:textSize="12sp"
-                    android:textColor="#B6B6B6"
-                    android:fontFamily="@font/roboto"
-                    app:layout_constraintBottom_toTopOf="@+id/chartOfCalorie"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <TextView
+                            android:id="@+id/dayOfTheCalorieChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/date"
+                            android:textAlignment="textStart"
+                            android:textSize="12sp"
+                            android:textColor="#B6B6B6"
+                            android:fontFamily="@font/roboto"
+                            app:layout_constraintBottom_toTopOf="@+id/chartOfCalorie"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/chartOfCalorie"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/chart_height"
-                    app:layout_constraintBottom_toTopOf="@+id/calorieChartStartTime"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/chartOfCalorie"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toTopOf="@+id/calorieChartStartTime"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/calorieChartStartTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/day_start"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/chartOfCalorie">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/calorieChartStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/chartOfCalorie">
 
-                </androidx.appcompat.widget.AppCompatTextView>
+                        </androidx.appcompat.widget.AppCompatTextView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/calorieChartEndTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/day_end"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/chartOfCalorie">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/calorieChartEndTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24:00"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/chartOfCalorie">
 
-                </androidx.appcompat.widget.AppCompatTextView>
+                        </androidx.appcompat.widget.AppCompatTextView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
