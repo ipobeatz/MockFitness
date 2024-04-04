@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,13 +21,15 @@ import com.android.mockfitness.data.MockDataSource.calorieData
 import com.android.mockfitness.data.MockDataSource.pulseData
 import com.android.mockfitness.data.MockDataSource.sleepQualityData
 import com.android.mockfitness.data.MockDataSource.stepData
+import com.android.mockfitness.data.MockDataSource.stepData2
+import com.android.mockfitness.data.MockDataSource.stepData3
 import com.android.mockfitness.data.PulseData
 import com.android.mockfitness.data.StepData
 import com.android.mockfitness.data.SleepQualityData
+import com.android.mockfitness.data.StepData2
+import com.android.mockfitness.data.StepData3
 import com.android.mockfitness.data.UserDataType
 import com.android.mockfitness.databinding.FragmentHomeBinding
-import com.android.mockfitness.ui.detail.DetailFragment
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -77,7 +80,13 @@ class HomeFragment : Fragment() {
         calorieBarChart(calorieData)
         sleepChart(sleepQualityData)
         pulseChart(pulseData)
+        stepBarChart2(stepData2)
+        stepBarChart3(stepData3)
         binding.stepCardView.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
+            findNavController().navigate(action)
+        }
+        binding.stepChart.setOnClickListener {
             val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(UserDataType.STEP.name)
             findNavController().navigate(action)
         }
@@ -116,11 +125,11 @@ class HomeFragment : Fragment() {
         }
 
         val dataSetFilled = BarDataSet(entriesFilled, "Filled")
-        dataSetFilled.color =Color.parseColor("#8E44AD")  // Koyu mor
+        dataSetFilled.color =Color.parseColor("#5871F6")  // Koyu mor
         dataSetFilled.setDrawValues(false)
 
         val dataSetEmpty = BarDataSet(entriesEmpty, "Empty")
-        dataSetEmpty.color = Color.parseColor("#D2B4DE") // Açık mor
+        dataSetEmpty.color = Color.parseColor("#353D64") // Açık mor
         dataSetEmpty.setDrawValues(false)
 
         val data = BarData(dataSetFilled, dataSetEmpty)
@@ -140,6 +149,7 @@ class HomeFragment : Fragment() {
 
     private fun pulseChart(pulseData: ArrayList<PulseData>) {
         val chart = binding.chartOfPulse
+        chart.setTouchEnabled(false);
         val entries = ArrayList<CandleEntry>()
 
         for (i in 0 until pulseData.size) {
@@ -148,6 +158,9 @@ class HomeFragment : Fragment() {
             val maxVal = (Math.random() * 30 + 70).toFloat() // 70 ile 100 arasında maksimum
 
              */
+            binding.dayOfPulse.text = pulseData.get(1).restingPulse.toString()
+            binding.dayOfThePulseChart.text = pulseData.get(1).day.toString()
+
             val minVal = pulseData.get(i).minPulse
             val maxVal = pulseData.get(i).maxPulse
             entries.add(
@@ -242,12 +255,84 @@ class HomeFragment : Fragment() {
             entries.add(BarEntry(index.toFloat(), stepData.calorieBurnForADay.toFloat()))
 
             val dataSet = BarDataSet(entries, "Bar $index")
-            dataSet.color = Color.YELLOW
+            dataSet.color = ContextCompat.getColor(requireContext(), R.color.yellow)
             dataSet.setDrawValues(false)  // Değerleri gizle
 
             barData.addDataSet(dataSet)
         }
         val barChart = binding.chartOfCalorie
+        barChart.data = barData
+
+        barChart.description.isEnabled = false
+        barChart.legend.isEnabled = false
+        barChart.axisLeft.isEnabled = false
+        barChart.axisRight.isEnabled = false
+        barChart.xAxis.isEnabled = false
+        barChart.setDoubleTapToZoomEnabled(false)
+        barChart.setFitBars(true)  // Barları sığdırmak için
+        barChart.invalidate()
+
+    }
+
+    fun stepBarChart3(stepData2: ArrayList<StepData3>) {
+        var stepForADay = 0
+        stepData2.forEach {
+            stepForADay += it.step
+        }
+        binding.dayOfCalorieBurn3.text = getString(R.string.step_a_day, stepForADay.toString())
+        binding.dayOfTheCalorieChart3.text = stepData2.first().day
+
+
+        val barData = BarData()
+        barData.barWidth = 0.5f
+
+        stepData2.forEachIndexed { index, stepData ->
+            val entries = ArrayList<BarEntry>()
+            entries.add(BarEntry(index.toFloat(), stepData.step.toFloat()))
+
+            val dataSet = BarDataSet(entries, "Bar $index")
+            dataSet.color = ContextCompat.getColor(requireContext(), R.color.green)
+            dataSet.setDrawValues(false)  // Değerleri gizle
+
+            barData.addDataSet(dataSet)
+        }
+        val barChart = binding.chartOfCalorie3
+        barChart.data = barData
+
+        barChart.description.isEnabled = false
+        barChart.legend.isEnabled = false
+        barChart.axisLeft.isEnabled = false
+        barChart.axisRight.isEnabled = false
+        barChart.xAxis.isEnabled = false
+        barChart.setDoubleTapToZoomEnabled(false)
+        barChart.setFitBars(true)  // Barları sığdırmak için
+        barChart.invalidate()
+
+    }
+
+    fun stepBarChart2(stepData2: ArrayList<StepData2>) {
+        var stepForADay = 0
+        stepData2.forEach {
+            stepForADay += it.step
+        }
+        binding.stepCountText2.text = getString(R.string.step_a_day, stepForADay.toString())
+        binding.dayOfTheChart2.text = stepData2.first().day
+
+
+        val barData = BarData()
+        barData.barWidth = 0.5f
+
+        stepData2.forEachIndexed { index, stepData ->
+            val entries = ArrayList<BarEntry>()
+            entries.add(BarEntry(index.toFloat(), stepData.step.toFloat()))
+
+            val dataSet = BarDataSet(entries, "Bar $index")
+            dataSet.color = ContextCompat.getColor(requireContext(), R.color.blue)
+            dataSet.setDrawValues(false)  // Değerleri gizle
+
+            barData.addDataSet(dataSet)
+        }
+        val barChart = binding.stepChart2
         barChart.data = barData
 
         barChart.description.isEnabled = false

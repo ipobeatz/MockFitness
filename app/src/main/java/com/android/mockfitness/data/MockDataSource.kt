@@ -86,12 +86,75 @@ object MockDataSource {
         PulseData(minPulse = 45, maxPulse = 88, restingPulse = 85, hourOfDay = 22, day =  "28 Mart"),
         PulseData(minPulse = 80, maxPulse = 102, restingPulse = 76, hourOfDay = 24,  day = "29 Mart"),
     )
+
+    val stepData2 = arrayListOf(
+        StepData2(39, 0, "28 Mart"),
+        StepData2(123, 1, "28 Mart"),
+        StepData2(2412, 2, "28 Mart"),
+        StepData2(0, 3, "28 Mart"),
+        StepData2(0, 4, "28 Mart"),
+        StepData2(0, 5, "28 Mart"),
+        StepData2(0, 6, "28 Mart"),
+        StepData2(0, 7, "28 Mart"),
+        StepData2(0, 8, "28 Mart"),
+        StepData2(125, 9, "28 Mart"),
+        StepData2(2865, 10, "28 Mart"),
+        StepData2(504, 11, "28 Mart"),
+        StepData2(39, 12, "28 Mart"),
+        StepData2(1239, 13, "28 Mart"),
+        StepData2(343, 14, "28 Mart"),
+        StepData2(25, 15, "28 Mart"),
+        StepData2(66, 16, "28 Mart"),
+        StepData2(125, 17, "28 Mart"),
+        StepData2(2357, 18, "28 Mart"),
+        StepData2(4223, 19, "28 Mart"),
+        StepData2(1285, 20, "28 Mart"),
+        StepData2(634, 21, "28 Mart"),
+        StepData2(24, 22, "28 Mart"),
+        StepData2(53, 23, "28 Mart"),
+        StepData2(0, 0, "29 Mart"),
+
+    )
+    val stepData3 = arrayListOf(
+        StepData3(39, 0, "28 Mart"),
+        StepData3(123, 1, "28 Mart"),
+        StepData3(2412, 2, "28 Mart"),
+        StepData3(0, 3, "28 Mart"),
+        StepData3(0, 4, "28 Mart"),
+        StepData3(0, 5, "28 Mart"),
+        StepData3(0, 6, "28 Mart"),
+        StepData3(0, 7, "28 Mart"),
+        StepData3(0, 8, "28 Mart"),
+        StepData3(125, 9, "28 Mart"),
+        StepData3(2865, 10, "28 Mart"),
+        StepData3(504, 11, "28 Mart"),
+        StepData3(39, 12, "28 Mart"),
+        StepData3(1239, 13, "28 Mart"),
+        StepData3(343, 14, "28 Mart"),
+        StepData3(25, 15, "28 Mart"),
+        StepData3(66, 16, "28 Mart"),
+        StepData3(125, 17, "28 Mart"),
+        StepData3(2357, 18, "28 Mart"),
+        StepData3(4223, 19, "28 Mart"),
+        StepData3(1285, 20, "28 Mart"),
+        StepData3(634, 21, "28 Mart"),
+        StepData3(24, 22, "28 Mart"),
+        StepData3(53, 23, "28 Mart"),
+        StepData3(0, 0, "29 Mart"),
+
+        )
 }
 
 data class StepData(val step: Int, val hourOfDay: Int, val day: String, val typeName: String = "adım")
 data class CalorieData(val calorieBurnForADay: Int, val hourOfDay: Int, val day: String)
 data class SleepQualityData(val sleepQualityForADay: Int, val hourOfDay: Int, val day: String)
 data class PulseData(val minPulse: Int, val maxPulse: Int, val restingPulse: Int, val hourOfDay: Int, val day: String, val type: String = "BPM")
+
+data class StepData2(val step: Int, val hourOfDay: Int, val day: String, val typeName: String = "adım")
+
+data class StepData3(val step: Int, val hourOfDay: Int, val day: String, val typeName: String = "adım")
+
+
 
 enum class UserDataType {
     STEP,

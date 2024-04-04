@@ -26,13 +26,13 @@
 
             <ImageView
                 android:id="@+id/titleIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_home_black_24dp" />
+                app:srcCompat="@drawable/baseline_remove_red_eye_24" />
 
             <TextView
                 android:id="@+id/summaryTitleText"
@@ -303,25 +303,26 @@
 
             <ImageView
                 android:id="@+id/detailIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_home_black_24dp" />
+                app:srcCompat="@drawable/baseline_pie_chart_24" />
 
             <TextView
                 android:id="@+id/detailTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text="Nabız dilimi"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/detailIcon"
                 app:layout_constraintStart_toEndOf="@+id/detailIcon"
                 app:layout_constraintTop_toTopOf="@+id/detailIcon"
-                app:layout_constraintVertical_bias="1.0" />
+                 />
 
             <ProgressBar
                 android:id="@+id/customProgressBar"

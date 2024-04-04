@@ -6,12 +6,20 @@
     android:background="@color/black"
     tools:context=".ui.home.HomeFragment">
 
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:padding="16dp"
+        android:padding="10dp"
         android:text="Sağlık"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/white"
@@ -29,206 +37,458 @@
         android:background="@android:drawable/ic_menu_add"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-    <LinearLayout
-        android:id="@+id/firstLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/airPollutionCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_weight="1"
-            android:backgroundTint="#141414"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="230dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                style="@style/MyCardView"
+                android:backgroundTint="#141414"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" >
 
-                <ImageView
-                    android:id="@+id/sleepDataCardIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-
-                    android:background="@drawable/fitness_icon5"
-                    app:layout_constraintBottom_toTopOf="@+id/sleepDataCountText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <TextView
-                    android:id="@+id/sleepDataCountText"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="  7 saat. 12 dk."
-                    android:fontFamily="@font/roboto_bold"
-                    android:textAlignment="textStart"
-                    android:textColor="#E6E6E6"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/dayOfThesleepData"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_height="match_parent"
+                    >
 
-                <TextView
-                    android:id="@+id/dayOfThesleepData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="  Kubat 30 Şubat"
-                    android:textAlignment="textStart"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="#B6B6B6"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/sleepDataChart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="Tümünü Göster"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/sleepDataChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    app:layout_constraintBottom_toTopOf="@+id/sleepDataQualityBadText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/baseline_chevron_right_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/sleepDataQualityBadText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="00:00"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/sleepDataChart">
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                </androidx.appcompat.widget.AppCompatTextView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/sleepDataQualityGoodText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="24:00"
-                    android:fontFamily="@font/roboto"
-
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/sleepDataChart">
-
-                </androidx.appcompat.widget.AppCompatTextView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/pulseCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_weight="1"
-            android:backgroundTint="#141414"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="230dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/firstLinearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
-                <ImageView
-                    android:id="@+id/pulseCardIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-
-                    android:background="@drawable/fitness_icon4"
-                    app:layout_constraintBottom_toTopOf="@+id/dayOfPulse"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/airPollutionCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:layout_editor_absoluteY="230dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:id="@+id/sleepDataCardIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/fitness_icon5"
+                            app:layout_constraintBottom_toTopOf="@+id/sleepDataCountText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/dayOfPulse"
-                    android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/sleepDataCountText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="  7 saat. 12 dk."
+                            android:textAlignment="textStart"
+                            android:textColor="#E6E6E6"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfThesleepData"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/dayOfThesleepData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="  Kubat 30 Şubat"
+                            android:textAlignment="textStart"
+                            android:textColor="#B6B6B6"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@+id/sleepDataChart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/sleepDataChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toTopOf="@+id/sleepDataQualityBadText"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/sleepDataQualityBadText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="00:00"
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/sleepDataChart">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/sleepDataQualityGoodText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="24:00"
+
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/sleepDataChart">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pulseCardView"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="  7 saat. 12 dk."
-                    android:fontFamily="@font/roboto_bold"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="230dp">
 
-                    android:textAlignment="textStart"
-                    android:textColor="#E6E6E6"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/dayOfThePulseChart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
 
-                <TextView
-                    android:id="@+id/dayOfThePulseChart"
-                    android:layout_width="match_parent"
+                        <ImageView
+                            android:id="@+id/pulseCardIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+
+                            android:background="@drawable/fitness_icon4"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfPulse"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/dayOfPulse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="110"
+                            android:textAlignment="textStart"
+                            android:textColor="#E6E6E6"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfThePulseChart"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="BPM"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/dayOfPulse"
+                            app:layout_constraintStart_toEndOf="@+id/dayOfPulse"
+                            app:layout_constraintTop_toTopOf="@+id/dayOfPulse" />
+
+                        <TextView
+                            android:id="@+id/dayOfThePulseChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="  Kubat 30 Şubat"
+                            android:textAlignment="textStart"
+                            android:textColor="#B6B6B6"
+                            app:layout_constraintBottom_toTopOf="@+id/chartOfPulse"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <com.github.mikephil.charting.charts.CandleStickChart
+                            android:id="@+id/chartOfPulse"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toTopOf="@+id/pulseChartStartTime"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/pulseChartStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="00:00"
+
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/chartOfPulse">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/pulseChartEndTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24:00"
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/chartOfPulse">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="80dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/stepCardView2"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="  Kubat 30 Şubat"
-                    android:textAlignment="textStart"
-                    android:textColor="#B6B6B6"
-                    android:fontFamily="@font/roboto"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="230dp">
 
-                    app:layout_constraintBottom_toTopOf="@+id/chartOfPulse"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
 
-                <com.github.mikephil.charting.charts.CandleStickChart
-                    android:id="@+id/chartOfPulse"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    app:layout_constraintBottom_toTopOf="@+id/pulseChartStartTime"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                        <ImageView
+                            android:id="@+id/stepCardIcon2"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/pulseChartStartTime"
-                    android:layout_width="wrap_content"
+                            android:background="@drawable/baseline_watch_later_24"
+                            app:layout_constraintBottom_toTopOf="@+id/stepCountText2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/stepCountText2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="  7 saat. 12 dk."
+
+                            android:textAlignment="textStart"
+                            android:textColor="#E6E6E6"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfTheChart2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/dayOfTheChart2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="  Kubat 30 Şubat"
+                            android:textAlignment="textStart"
+                            android:textColor="#B6B6B6"
+
+                            app:layout_constraintBottom_toTopOf="@+id/stepChart2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/stepChart2"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toTopOf="@+id/chartStartTime2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/chartStartTime2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="00:00"
+
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/stepChart2">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/chartEndTime2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="24:00"
+
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/stepChart2">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/calorieCardView3"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="00:00"
-                    android:fontFamily="@font/roboto"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#141414"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="230dp">
 
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/chartOfPulse">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
 
-                </androidx.appcompat.widget.AppCompatTextView>
+                        <ImageView
+                            android:id="@+id/calorieCardIcon3"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/pulseChartEndTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="24:00"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/chartOfPulse">
+                            android:background="@drawable/baseline_man_24"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfCalorieBurn3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.appcompat.widget.AppCompatTextView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/dayOfCalorieBurn3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="  7 saat. 12 dk."
+                            android:textAlignment="textStart"
+                            android:textColor="#E6E6E6"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/dayOfTheCalorieChart3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                        <TextView
+                            android:id="@+id/dayOfTheCalorieChart3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:text="  Kubat 30 Şubat"
+                            android:textAlignment="textStart"
+                            android:textColor="#B6B6B6"
+
+                            app:layout_constraintBottom_toTopOf="@+id/chartOfCalorie3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/chartOfCalorie3"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            app:layout_constraintBottom_toTopOf="@+id/calorieChartStartTime3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/calorieChartStartTime3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="00:00"
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/chartOfCalorie3">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/calorieChartEndTime3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="24:00"
+                            android:textColor="@android:color/darker_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/chartOfCalorie3">
+
+                        </androidx.appcompat.widget.AppCompatTextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -430,8 +690,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
 
+    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 
