@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-android")
     id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
 }
 
 
@@ -60,5 +61,6 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.play.services.auth)
     implementation(libs.play.services.fitness)
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
 
 }

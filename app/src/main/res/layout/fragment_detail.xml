@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="#171515"
         android:backgroundTint="#252424"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
@@ -31,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
-                android:tint="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_home_black_24dp" />
@@ -42,6 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Günlük özet"
+                android:fontFamily="@font/roboto_bold"
+
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/titleIcon"
                 app:layout_constraintStart_toEndOf="@+id/titleIcon"
@@ -88,6 +88,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
                 android:text="BPM"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/dataCounterText"
                 app:layout_constraintStart_toEndOf="@+id/dataCounterText" />
@@ -99,6 +100,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
                 android:text="BPM"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/dataMinCounterText"
                 app:layout_constraintStart_toEndOf="@+id/dataMinCounterText" />
@@ -110,6 +112,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
                 android:text="BPM"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/dataMaxCounterText"
                 app:layout_constraintStart_toEndOf="@+id/dataMaxCounterText" />
@@ -121,6 +124,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
                 android:text="BPM"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/dataAvarageCounterText"
                 app:layout_constraintStart_toEndOf="@+id/dataAvarageCounterText" />
@@ -173,6 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dinlenme"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/dataCounterText"
                 app:layout_constraintTop_toBottomOf="@+id/dataCounterText" />
@@ -182,6 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Minimum"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/dataCounterText"
                 app:layout_constraintTop_toBottomOf="@+id/dataMinCounterText" />
@@ -191,6 +197,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maksimum"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/dataMaxCounterText"
                 app:layout_constraintTop_toBottomOf="@+id/dataMaxCounterText" />
@@ -200,6 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ortalama"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/dataAvarageCounterText"
                 app:layout_constraintTop_toBottomOf="@+id/dataAvarageCounterText" />
@@ -208,6 +216,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -240,6 +249,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
                 android:text="saat"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/secondDataText"
                 app:layout_constraintStart_toEndOf="@+id/secondDataText" />
@@ -251,6 +261,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="2dp"
                 android:text="saat"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/secondDataText"
                 app:layout_constraintStart_toEndOf="@+id/secondDataSecondText" />
@@ -296,7 +307,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
-                android:tint="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_home_black_24dp" />
@@ -306,6 +316,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nabız dilimi"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/detailIcon"
                 app:layout_constraintStart_toEndOf="@+id/detailIcon"
@@ -347,6 +358,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="Hafif"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -359,6 +371,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="Yoğun"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -366,5 +379,46 @@
                 app:layout_constraintTop_toTopOf="@+id/view4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:backgroundTint="#252424"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center|left"
+                android:text="   Daha Fazla Bilgi Edinin "
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/baseline_chevron_right_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
