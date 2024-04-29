@@ -42,12 +42,12 @@ class MainActivity @Inject constructor() : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
             )
         )
-        setupGoogleFitPermissions()
+       // setupGoogleFitPermissions()
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
-    private fun setupGoogleFitPermissions() {
+ /*   private fun setupGoogleFitPermissions() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACTIVITY_RECOGNITION), REQUEST_OAUTH_REQUEST_CODE)
         }
@@ -70,4 +70,6 @@ class MainActivity @Inject constructor() : AppCompatActivity() {
     companion object {
         const val REQUEST_OAUTH_REQUEST_CODE = 0
     }
+
+  */
 }
